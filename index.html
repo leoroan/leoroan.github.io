@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Desarrollador Fullstack. Si llegaste hasta acá, es porque buscaste.">
+    <meta name="author" content="Tu Nombre">
+    <title>./Index | MySelfProductions</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            /* Paleta Pastel Oscura 'Coder' */
+            --bg-main: #1e293b; /* Slate 800 */
+            --bg-card: #0f172a; /* Slate 900 */
+            --accent-blue: #38bdf8; /* Sky 400 (Pastel Blue) */
+            --text-muted: #94a3b8; /* Slate 400 */
+            --code-green: #4ade80; /* Green 400 */
+            --code-purple: #c084fc; /* Purple 400 */
+        }
+
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: var(--bg-main);
+            color: var(--text-muted);
+            overflow-x: hidden;
+        }
+
+        /* Loading Spinner Overlay */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-card);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        /* Navbar Minimalista */
+        .navbar-toggler {
+            border: none;
+            color: var(--accent-blue);
+        }
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* Offcanvas (Sidebar) */
+        .offcanvas {
+            background-color: var(--bg-card);
+            border-right: 1px solid #334155;
+        }
+        .offcanvas-header {
+            border-bottom: 1px solid #334155;
+        }
+        .nav-link {
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--accent-blue);
+            padding-left: 15px; /* Pequeño desplazamiento al hover */
+        }
+
+        /* Hero Section - Estilo Editor de Código */
+        .hero-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .code-window {
+            background-color: var(--bg-card);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .window-header {
+            background-color: #334155;
+            padding: 8px 15px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .window-body {
+            padding: 30px;
+        }
+
+        .typing-effect {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        
+        .comment-text {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .highlight-var { color: var(--code-purple); }
+        .highlight-str { color: var(--code-green); }
+
+        /* Custom WhatsApp Button override */
+        .btn-custom-link {
+            color: var(--text-muted) !important;
+            font-size: 12px !important;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+        .btn-custom-link:hover {
+            color: var(--accent-blue) !important;
+            opacity: 1;
+            text-decoration: underline !important;
+        }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="loader-wrapper">
+        <div class="spinner-border text-info" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <nav class="navbar fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarPanel" aria-controls="sidebarPanel">
+                <i class="bi bi-terminal fs-3"></i> </button>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start w-75 w-md-25" tabindex="-1" id="sidebarPanel" aria-labelledby="sidebarPanelLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-info" id="sidebarPanelLabel">
+                <i class="bi bi-hdd-network me-2"></i>Navegación
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between">
+            <div>
+                <ul class="nav flex-column mt-3 gap-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="bi bi-house-door me-2"></i> ./Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-code-slash me-2"></i> ./Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="bi bi-person-workspace me-2"></i> ./Stack</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="mt-auto">
+                <p class="small text-muted border-top pt-3">
+                    // Links de interés<br>
+                    <a href="https://github.com/leoroan" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-info small">GitHub</a> • 
+                    <a href="https://www.linkedin.com/in/masellileandro/" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-info small">LinkedIn</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-container">
+        <div class="code-window">
+            <div class="window-header">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="ms-2 text-muted small" style="opacity: 0.6;">index.js — Bienvenido!😆</span>
+            </div>
+            <div class="window-body">
+                <p class="mb-1">
+                    <span class="highlight-var">const</span> <span class="text-light">usuario</span> = <span class="highlight-var">new</span> <span class="text-warning">Visitor</span>();
+                </p>
+                <p class="mb-4">
+                    <span class="text-light">usuario.</span><span class="text-info">initDiscovery</span>();
+                </p>
+                
+                <h2 class="display-6 mb-3 typing-effect">
+                    ¡Lo encontraste! 
+                    <i class="bi bi-emoji-wink text-warning"></i>
+                </h2>
+                
+                <p class="lead text-light">
+                    "Si llegaste hasta acá, es porque un poco buscaste."
+                </p>
+                
+                <p class="comment-text mb-4">
+                    // No hay casualidades en el código, solo <br>
+                    // variables que finalmente se resolvieron. <br>
+                    // Bienvenido a mi espacio base.
+                </p>
+
+                <hr class="border-secondary opacity-25">
+
+                <div class="d-flex justify-content-end align-items-center gap-2">
+                    <span class="small text-muted">¿Bug report? → </span>
+                    <a href="#" onclick="window.location.href='https://wa.me/' + atob('NTQ5MjIxNTk0Mzk0Mg==') + '?text=me%20pas%C3%B3%20algo%20%20con%20el%20amigo%20invisible%20desde%20la%20web!';" class="btn btn-link btn-custom-link text-decoration-none">
+                        <i class="bi bi-whatsapp me-1"></i> Contactarme por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Manejo del Loader
+            const loader = document.getElementById('loader-wrapper');
+            
+            // Simulamos un pequeño tiempo de carga para el efecto dramático
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 800);
+
+            // 2. Console Easter Egg (Para los curiosos que abren F12)
+            console.log(
+                "%c ¡Hola Dev! %c Si estás leyendo esto, vamos a llevarnos bien.",
+                "color: #38bdf8; font-size: 20px; font-weight: bold;",
+                "color: #94a3b8; font-size: 12px;"
+            );
+        });
+    </script>
+  </body>
+</html>
