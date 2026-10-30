@@ -1,0 +1,216 @@
+/* Shared styles for MySelfProductions web pages */
+:root {
+    /* Paleta Pastel Oscura 'Coder' */
+    --bg-main: #1e293b;
+    --bg-card: #0f172a;
+    --accent-blue: #38bdf8;
+    --text-muted: #94a3b8;
+    --code-green: #4ade80;
+    --code-purple: #c084fc;
+}
+
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: var(--bg-main);
+    color: var(--text-muted);
+    overflow-x: hidden;
+}
+
+/* Loading Spinner Overlay */
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-card);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Navbar Minimalista */
+.navbar-toggler {
+    border: none;
+    color: var(--accent-blue);
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* Offcanvas (Sidebar) */
+.offcanvas {
+    background-color: var(--bg-card);
+    border-right: 1px solid #334155;
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid #334155;
+}
+
+.nav-link {
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--accent-blue);
+    padding-left: 15px;
+}
+
+/* Content Card */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+h1, h2, h3 {
+    color: #e2e8f0;
+    font-weight: 400;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* Section Titles */
+.section-title {
+    color: var(--accent-blue);
+    border-bottom: 1px solid #334155;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+/* Footer Info */
+.footer-info {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Code Block */
+.code-block {
+    background-color: #020617;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+/* Typography Highlight */
+.highlight-keyword {
+    color: var(--code-green);
+    font-weight: 600;
+}
+
+.highlight-variable {
+    color: #94a3b8;
+}
+
+.highlight-function {
+    color: var(--code-purple);
+    font-weight: 600;
+}
+
+.highlight-string {
+    color: #f59e0b;
+}
+
+.highlight-comment {
+    color: #64748b;
+    font-style: italic;
+}
+
+.highlight-text {
+    color: #e2e8f0;
+}
+
+.highlight-boolean {
+    color: #f472b6;
+}
+
+.highlight-number {
+    color: #60a5fa;
+}
+
+/* Typing Effect Animation */
+.typing-effect {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--accent-blue);
+    animation: typing 2.5s steps(30, end), blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* Window Header Styles */
+.window-header {
+    background-color: #334155;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.window-body {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* Window Dots */
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot-red { background-color: #ef4444; }
+.dot-yellow { background-color: #f59e0b; }
+.dot-green { background-color: #22c55e; }
+
+/* Comment Text */
+.comment-text {
+    color: #64748b;
+    font-style: italic;
+    font-size: 12px;
+    margin-bottom: 20px;
+    border-left: 2px solid #334155;
+    padding-left: 12px;
+}
+
+/* Custom Link Button */
+.btn-custom-link {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.btn-custom-link:hover {
+    color: var(--code-green);
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-card);
+    border-top: 1px solid #334155;
+    padding: 20px 0;
+    margin-top: 40px;
+}
